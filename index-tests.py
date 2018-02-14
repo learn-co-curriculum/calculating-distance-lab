@@ -1,4 +1,4 @@
-import unittest
+import unittest2 as unittest
 from ipynb.fs.full.distancelab import (students,
 fred, daniel, street_distance, avenue_distance,
 distance_between_students_squared, distance, distance_with_student,
@@ -29,5 +29,5 @@ class TestDistance(unittest.TestCase):
         self.assertEqual(nearest_neighbors(fred, students, 2), [{'avenue': 10, 'distance': 1.4142135623730951, 'name': 'steven', 'street': 4},
             {'avenue': 5, 'distance': 2.0, 'name': 'daniel', 'street': 1}])
 
-if __name__ == '__main__':
-    unittest.main()
+
+unittest.main()
