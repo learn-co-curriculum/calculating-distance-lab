@@ -136,7 +136,7 @@ for neighbor in neighbors:
 distances
 ```
 
-The returned list from the above procedure isn't super helpful.  We need to know who each distance is associated with.  
+The returned list from the above procedure isn't super helpful.  We need to know the person associated with each distance.  
 
 So let's accomplish this by writing a function called `distance_with_neighbor` that works like our distance function but instead of returning a float, returns a dictionary representing the `second_neighbor`, and also adds in the a key value pair indicating distance from the `first_neighbor`.
 
