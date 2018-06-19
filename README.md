@@ -13,7 +13,7 @@ Let's declare a variable `neighbors` and assign it to a list of dictionaries, ea
 
 
 ```python
-neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'avenue': 1, 'street': 11}, 
+neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'avenue': 1, 'street': 11},
              {'name': 'Bob', 'avenue': 5, 'street': 8}, {'name': 'Edgar', 'avenue': 6, 'street': 13},
              {'name': 'Steven', 'avenue': 3, 'street': 6}, {'name': 'Natalie', 'avenue': 5, 'street': 4}]
 ```
@@ -38,7 +38,7 @@ We'll also plot our neighbors, to get a sense of our data.
 import plotly
 
 plotly.offline.init_notebook_mode(connected=True)
-trace0 = dict(x=list(map(lambda neighbor: neighbor['avenue'],neighbors)), 
+trace0 = dict(x=list(map(lambda neighbor: neighbor['avenue'],neighbors)),
               y=list(map(lambda neighbor: neighbor['street'],neighbors)),
               text=list(map(lambda neighbor: neighbor['name'],neighbors)),
               mode='markers')
@@ -57,7 +57,7 @@ We'll start by focusing on the neighbors Fred and Natalie, and points (4, 8) and
 
 ### Calculating the sides of the triangle
 
-Remember that to calculate the distance, we draw a diagonal line between the two points, form a right triangle around the diagonal line, and then use the Pythagorean Theorem to calculate the hypotenuse of the triangle, that is the distance.  Let's start with imagining we formed a right triangle around the two points and now can move onto calculating the legs of our right triangle. 
+Remember that to calculate the distance, we draw a diagonal line between the two points, form a right triangle around the diagonal line, and then use the Pythagorean Theorem to calculate the hypotenuse of the triangle, that is the distance.  Let's start with imagining we formed a right triangle around the two points and now can move onto calculating the legs of our right triangle.
 
 Write a function called `street_distance` that calculates how far **in streets** two neighbors are from each other.  So for example, with Natalie at street 4, and Fred at street 8, our `street_distance` function should return the number 4.
 
@@ -153,7 +153,7 @@ distance_with_neighbor(fred, natalie)
 # {'avenue': 5, 'distance': 4.123105625617661, 'name': 'Natalie', 'street': 4}
 ```
 
-Now write a function called `distance_all` that returns a list representing the distances between a `first_neighbor` and the rest of the neighhbors.  The list should not return the `first_neighbor` in its collection of neighbors. 
+Now write a function called `distance_all` that returns a list representing the distances between a `first_neighbor` and the rest of the neighbors.  The list should not return the `first_neighbor` in its collection of neighbors. 
 
 
 ```python
