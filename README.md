@@ -274,4 +274,4 @@ nearest_neighbors(fred, neighbors, 2)
 
 ### Summary
 
-In this lab, you built out the nearest neighbors.  We'll review building out these functions in the next section.
+In this lab, you built out the nearest neighbors algorithm.  We'll review building out these functions in the next section.
