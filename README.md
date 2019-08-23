@@ -13,7 +13,15 @@ Let's declare a variable `neighbors` and assign it to a list of dictionaries, ea
 
 
 ```python
-neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'avenue': 1, 'street': 11},
+neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'avenue': 1, 'street': 11}, 
+             {'name': 'Bob', 'avenue': 5, 'street': 8}, {'name': 'Edgar', 'avenue': 6, 'street': 13},
+             {'name': 'Steven', 'avenue': 3, 'street': 6}, {'name': 'Natalie', 'avenue': 5, 'street': 4}]
+```
+
+
+```python
+# __SOLUTION__ 
+neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'avenue': 1, 'street': 11}, 
              {'name': 'Bob', 'avenue': 5, 'street': 8}, {'name': 'Edgar', 'avenue': 6, 'street': 13},
              {'name': 'Steven', 'avenue': 3, 'street': 6}, {'name': 'Natalie', 'avenue': 5, 'street': 4}]
 ```
@@ -22,7 +30,32 @@ neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'aven
 
 
 ```python
+# __SOLUTION__ 
 neighbors
+```
+
+
+
+
+    [{'name': 'Fred', 'avenue': 4, 'street': 8},
+     {'name': 'Suzie', 'avenue': 1, 'street': 11},
+     {'name': 'Bob', 'avenue': 5, 'street': 8},
+     {'name': 'Edgar', 'avenue': 6, 'street': 13},
+     {'name': 'Steven', 'avenue': 3, 'street': 6},
+     {'name': 'Natalie', 'avenue': 5, 'street': 4}]
+
+
+
+
+```python
+neighbors
+```
+
+
+```python
+# __SOLUTION__ 
+fred = neighbors[0]
+natalie = neighbors[5]
 ```
 
 
@@ -38,7 +71,7 @@ We'll also plot our neighbors, to get a sense of our data.
 import plotly
 
 plotly.offline.init_notebook_mode(connected=True)
-trace0 = dict(x=list(map(lambda neighbor: neighbor['avenue'],neighbors)),
+trace0 = dict(x=list(map(lambda neighbor: neighbor['avenue'],neighbors)), 
               y=list(map(lambda neighbor: neighbor['street'],neighbors)),
               text=list(map(lambda neighbor: neighbor['name'],neighbors)),
               mode='markers')
@@ -55,9 +88,30 @@ plotly.offline.iplot(dict(data=[trace0], layout={'xaxis': {'dtick': 1}, 'yaxis':
 
 We'll start by focusing on the neighbors Fred and Natalie, and points (4, 8) and (5, 4) respectively.
 
+
+```python
+# __SOLUTION__ 
+import plotly
+
+plotly.offline.init_notebook_mode(connected=True)
+trace0 = dict(x=list(map(lambda neighbor: neighbor['avenue'],neighbors)), 
+              y=list(map(lambda neighbor: neighbor['street'],neighbors)),
+              text=list(map(lambda neighbor: neighbor['name'],neighbors)),
+              mode='markers')
+plotly.offline.iplot(dict(data=[trace0], layout={'xaxis': {'dtick': 1}, 'yaxis': {'dtick': 1}}))
+```
+
+
+<script>requirejs.config({paths: { 'plotly': ['https://cdn.plot.ly/plotly-latest.min']},});if(!window.Plotly) {{require(['plotly'],function(plotly) {window.Plotly=plotly;});}}</script>
+
+
+
+<div id="901d2e06-6b50-4920-a8a3-26e6184c4ada" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("901d2e06-6b50-4920-a8a3-26e6184c4ada", [{"x": [4, 1, 5, 6, 3, 5], "y": [8, 11, 8, 13, 6, 4], "text": ["Fred", "Suzie", "Bob", "Edgar", "Steven", "Natalie"], "mode": "markers"}], {"xaxis": {"dtick": 1}, "yaxis": {"dtick": 1}}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+
+
 ### Calculating the sides of the triangle
 
-Remember that to calculate the distance, we draw a diagonal line between the two points, form a right triangle around the diagonal line, and then use the Pythagorean Theorem to calculate the hypotenuse of the triangle, that is the distance.  Let's start with imagining we formed a right triangle around the two points and now can move onto calculating the legs of our right triangle.
+Remember that to calculate the distance, we draw a diagonal line between the two points, form a right triangle around the diagonal line, and then use the Pythagorean Theorem to calculate the hypotenuse of the triangle, that is the distance.  Let's start with imagining we formed a right triangle around the two points and now can move onto calculating the legs of our right triangle. 
 
 Write a function called `street_distance` that calculates how far **in streets** two neighbors are from each other.  So for example, with Natalie at street 4, and Fred at street 8, our `street_distance` function should return the number 4.
 
@@ -71,10 +125,30 @@ Now execute the code below. As you can see from the comment to the right, the ex
 
 
 ```python
+# __SOLUTION__ 
+def street_distance(first_neighbor, second_neighbor):
+        return first_neighbor['street'] - second_neighbor['street']
+```
+
+
+```python
 street_distance(fred, natalie) # 4
 ```
 
 Write a function called `avenue_distance` that calculates how far in avenues two neighbors are from each other.  The distance should always be positive.
+
+
+```python
+# __SOLUTION__ 
+street_distance(fred, natalie) # 4
+```
+
+
+
+
+    4
+
+
 
 
 ```python
@@ -87,7 +161,27 @@ def avenue_distance(first_neighbor, second_neighbor):
 avenue_distance(fred, natalie) #  1
 ```
 
+
+```python
+# __SOLUTION__ 
+def avenue_distance(first_neighbor, second_neighbor):
+    return abs(first_neighbor['avenue'] - second_neighbor['avenue'])
+```
+
 ### Calculating the distance
+
+
+```python
+# __SOLUTION__ 
+avenue_distance(fred, natalie) #  1
+```
+
+
+
+
+    1
+
+
 
 Now let's begin writing functions involved with calculating that hypotenuse of our right triangle.  Using the Pythagorean Theorem, $a^2 + b^2 = c^2 $, write a function called `distance_between_neighbors_squared` that calculates $c^2$, the length of the hypotenuse squared.
 
@@ -102,7 +196,27 @@ def distance_between_neighbors_squared(first_neighbor, second_neighbor):
 distance_between_neighbors_squared(fred, natalie) # 17
 ```
 
+
+```python
+# __SOLUTION__ 
+def distance_between_neighbors_squared(first_neighbor, second_neighbor):
+    return street_distance(first_neighbor, second_neighbor)**2 + avenue_distance(first_neighbor, second_neighbor)**2
+```
+
 Now let's move onto the next step and write a function called `distance`, that given two neighbors returns the distance between them.  
+
+
+```python
+# __SOLUTION__ 
+distance_between_neighbors_squared(fred, natalie) # 17
+```
+
+
+
+
+    17
+
+
 
 > You may have to Google some math to do this.
 
@@ -115,8 +229,29 @@ def distance(first_neighbor, second_neighbor):
 
 
 ```python
+# __SOLUTION__ 
+import math
+def distance(first_neighbor, second_neighbor):
+    return math.sqrt(distance_between_neighbors_squared(first_neighbor, second_neighbor))
+```
+
+
+```python
 distance(fred, natalie) # 4.123105625617661
 ```
+
+
+```python
+# __SOLUTION__ 
+distance(fred, natalie) # 4.123105625617661
+```
+
+
+
+
+    4.123105625617661
+
+
 
 ### Writing Our "Nearest Neighbors" Functions
 
@@ -136,6 +271,29 @@ for neighbor in neighbors:
 distances
 ```
 
+
+```python
+# __SOLUTION__ 
+distances = []
+for neighbor in neighbors:
+    distance_between = distance(fred, neighbor)
+    distances.append(distance_between)
+
+distances
+```
+
+
+
+
+    [0.0,
+     4.242640687119285,
+     1.0,
+     5.385164807134504,
+     2.23606797749979,
+     4.123105625617661]
+
+
+
 The returned list from the above procedure isn't super helpful.  We need to know the person associated with each distance.  
 
 So let's accomplish this by writing a function called `distance_with_neighbor` that works like our distance function but instead of returning a float, returns a dictionary representing the `second_neighbor`, and also adds in the a key value pair indicating distance from the `first_neighbor`.
@@ -149,9 +307,34 @@ def distance_with_neighbor(first_neighbor, second_neighbor):
 
 
 ```python
+# __SOLUTION__ 
+import math
+def distance_with_neighbor(first_neighbor, second_neighbor):
+    neighbor_with_distance = second_neighbor.copy()
+    distance = math.sqrt(distance_between_neighbors_squared(first_neighbor, second_neighbor))
+    neighbor_with_distance['distance'] = distance
+    return neighbor_with_distance
+```
+
+
+```python
 distance_with_neighbor(fred, natalie)
 # {'avenue': 5, 'distance': 4.123105625617661, 'name': 'Natalie', 'street': 4}
 ```
+
+
+```python
+# __SOLUTION__ 
+distance_with_neighbor(fred, natalie)
+# {'avenue': 5, 'distance': 4.123105625617661, 'name': 'Natalie', 'street': 4}
+```
+
+
+
+
+    {'name': 'Natalie', 'avenue': 5, 'street': 4, 'distance': 4.123105625617661}
+
+
 
 Now write a function called `distance_all` that returns a list representing the distances between a `first_neighbor` and the rest of the neighbors.  The list should not return the `first_neighbor` in its collection of neighbors. 
 
@@ -159,6 +342,14 @@ Now write a function called `distance_all` that returns a list representing the 
 ```python
 def distance_all(first_neighbor, neighbors):
     pass
+```
+
+
+```python
+# __SOLUTION__ 
+def distance_all(first_neighbor, neighbors):
+    remaining_neighbors = list(filter(lambda neighbor: neighbor != first_neighbor, neighbors))
+    return list(map(lambda neighbor: distance_with_neighbor(first_neighbor, neighbor), remaining_neighbors))
 ```
 
 
@@ -172,6 +363,29 @@ distance_all(fred, neighbors)
 #  {'avenue': 5, 'distance': 4.123105625617661, 'name': 'Natalie', 'street': 4}]
 ```
 
+
+```python
+# __SOLUTION__ 
+distance_all(fred, neighbors)
+
+# [{'avenue': 1, 'distance': 4.242640687119285, 'name': 'Suzie', 'street': 11},
+#  {'avenue': 5, 'distance': 1.0, 'name': 'Bob', 'street': 8},
+#  {'avenue': 6, 'distance': 5.385164807134504, 'name': 'Edgar', 'street': 13},
+#  {'avenue': 3, 'distance': 2.23606797749979, 'name': 'Steven', 'street': 6},
+#  {'avenue': 5, 'distance': 4.123105625617661, 'name': 'Natalie', 'street': 4}]
+```
+
+
+
+
+    [{'name': 'Suzie', 'avenue': 1, 'street': 11, 'distance': 4.242640687119285},
+     {'name': 'Bob', 'avenue': 5, 'street': 8, 'distance': 1.0},
+     {'name': 'Edgar', 'avenue': 6, 'street': 13, 'distance': 5.385164807134504},
+     {'name': 'Steven', 'avenue': 3, 'street': 6, 'distance': 2.23606797749979},
+     {'name': 'Natalie', 'avenue': 5, 'street': 4, 'distance': 4.123105625617661}]
+
+
+
 Finally, write a function called `nearest_neighbors` that given a neighbor, returns a list of neighbors, ordered from closest to furthest from the neighbor.  The function should take an optional third argument that specifies how many "nearest" neighbors are returned.
 
 
@@ -182,10 +396,36 @@ def nearest_neighbors(first_neighbor, neighbors, number = None):
 
 
 ```python
+# __SOLUTION__ 
+def nearest_neighbors(first_neighbor, neighbors, number = None):
+    number = number or len(neighbors) - 1
+    neighbor_distances = distance_all(first_neighbor, neighbors)
+    sorted_neighbors = sorted(neighbor_distances, key=lambda neighbor: neighbor['distance'])
+    return sorted_neighbors[:number]
+```
+
+
+```python
 nearest_neighbors(fred, neighbors, 2)
 # [{'avenue': 5, 'distance': 1.0, 'name': 'Bob', 'street': 8},
 #  {'avenue': 3, 'distance': 2.23606797749979, 'name': 'Steven', 'street': 6}]
 ```
+
+
+```python
+# __SOLUTION__ 
+nearest_neighbors(fred, neighbors, 2)
+# [{'avenue': 5, 'distance': 1.0, 'name': 'Bob', 'street': 8},
+#  {'avenue': 3, 'distance': 2.23606797749979, 'name': 'Steven', 'street': 6}]
+```
+
+
+
+
+    [{'name': 'Bob', 'avenue': 5, 'street': 8, 'distance': 1.0},
+     {'name': 'Steven', 'avenue': 3, 'street': 6, 'distance': 2.23606797749979}]
+
+
 
 ### Summary
 
