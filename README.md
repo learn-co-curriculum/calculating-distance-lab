@@ -30,6 +30,11 @@ neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'aven
 
 
 ```python
+neighbors
+```
+
+
+```python
 # __SOLUTION__ 
 neighbors
 ```
@@ -48,18 +53,13 @@ neighbors
 
 
 ```python
-neighbors
-```
-
-
-```python
-# __SOLUTION__ 
 fred = neighbors[0]
 natalie = neighbors[5]
 ```
 
 
 ```python
+# __SOLUTION__ 
 fred = neighbors[0]
 natalie = neighbors[5]
 ```
@@ -83,10 +83,8 @@ plotly.offline.iplot(dict(data=[trace0], layout={'xaxis': {'dtick': 1}, 'yaxis':
 
 
 
-<div id="c2ae1a93-1edf-402b-80cc-67157c7f1697" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("c2ae1a93-1edf-402b-80cc-67157c7f1697", [{"x": [4, 1, 5, 6, 3, 5], "y": [8, 11, 8, 13, 6, 4], "text": ["Fred", "Suzie", "Bob", "Edgar", "Steven", "Natalie"], "mode": "markers"}], {"xaxis": {"dtick": 1}, "yaxis": {"dtick": 1}}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="4347b30f-6596-468a-9ff9-13153a204476" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("4347b30f-6596-468a-9ff9-13153a204476", [{"mode": "markers", "text": ["Fred", "Suzie", "Bob", "Edgar", "Steven", "Natalie"], "x": [4, 1, 5, 6, 3, 5], "y": [8, 11, 8, 13, 6, 4], "type": "scatter", "uid": "2855ec06-c5ca-11e9-a3f5-3af9d3ad3e0b"}], {"xaxis": {"dtick": 1}, "yaxis": {"dtick": 1}}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
 
-
-We'll start by focusing on the neighbors Fred and Natalie, and points (4, 8) and (5, 4) respectively.
 
 
 ```python
@@ -106,8 +104,10 @@ plotly.offline.iplot(dict(data=[trace0], layout={'xaxis': {'dtick': 1}, 'yaxis':
 
 
 
-<div id="901d2e06-6b50-4920-a8a3-26e6184c4ada" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("901d2e06-6b50-4920-a8a3-26e6184c4ada", [{"x": [4, 1, 5, 6, 3, 5], "y": [8, 11, 8, 13, 6, 4], "text": ["Fred", "Suzie", "Bob", "Edgar", "Steven", "Natalie"], "mode": "markers"}], {"xaxis": {"dtick": 1}, "yaxis": {"dtick": 1}}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="ce7f79cd-2d07-439f-935a-1af71c16e68a" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("ce7f79cd-2d07-439f-935a-1af71c16e68a", [{"mode": "markers", "text": ["Fred", "Suzie", "Bob", "Edgar", "Steven", "Natalie"], "x": [4, 1, 5, 6, 3, 5], "y": [8, 11, 8, 13, 6, 4], "type": "scatter", "uid": "da4e3978-c5c9-11e9-a505-3af9d3ad3e0b"}], {"xaxis": {"dtick": 1}, "yaxis": {"dtick": 1}}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
 
+
+We'll start by focusing on the neighbors Fred and Natalie, and points (4, 8) and (5, 4) respectively.
 
 ### Calculating the sides of the triangle
 
@@ -121,8 +121,6 @@ def street_distance(first_neighbor, second_neighbor):
     pass
 ```
 
-Now execute the code below. As you can see from the comment to the right, the expected returned street distance is $4$.
-
 
 ```python
 # __SOLUTION__ 
@@ -130,12 +128,12 @@ def street_distance(first_neighbor, second_neighbor):
         return first_neighbor['street'] - second_neighbor['street']
 ```
 
+Now execute the code below. As you can see from the comment to the right, the expected returned street distance is $4$.
+
 
 ```python
 street_distance(fred, natalie) # 4
 ```
-
-Write a function called `avenue_distance` that calculates how far in avenues two neighbors are from each other.  The distance should always be positive.
 
 
 ```python
@@ -150,15 +148,12 @@ street_distance(fred, natalie) # 4
 
 
 
+Write a function called `avenue_distance` that calculates how far in avenues two neighbors are from each other.  The distance should always be positive.
+
 
 ```python
 def avenue_distance(first_neighbor, second_neighbor):
     pass
-```
-
-
-```python
-avenue_distance(fred, natalie) #  1
 ```
 
 
@@ -168,7 +163,10 @@ def avenue_distance(first_neighbor, second_neighbor):
     return abs(first_neighbor['avenue'] - second_neighbor['avenue'])
 ```
 
-### Calculating the distance
+
+```python
+avenue_distance(fred, natalie) #  1
+```
 
 
 ```python
@@ -183,6 +181,8 @@ avenue_distance(fred, natalie) #  1
 
 
 
+### Calculating the distance
+
 Now let's begin writing functions involved with calculating that hypotenuse of our right triangle.  Using the Pythagorean Theorem, $a^2 + b^2 = c^2 $, write a function called `distance_between_neighbors_squared` that calculates $c^2$, the length of the hypotenuse squared.
 
 
@@ -193,17 +193,15 @@ def distance_between_neighbors_squared(first_neighbor, second_neighbor):
 
 
 ```python
-distance_between_neighbors_squared(fred, natalie) # 17
-```
-
-
-```python
 # __SOLUTION__ 
 def distance_between_neighbors_squared(first_neighbor, second_neighbor):
     return street_distance(first_neighbor, second_neighbor)**2 + avenue_distance(first_neighbor, second_neighbor)**2
 ```
 
-Now let's move onto the next step and write a function called `distance`, that given two neighbors returns the distance between them.  
+
+```python
+distance_between_neighbors_squared(fred, natalie) # 17
+```
 
 
 ```python
@@ -217,6 +215,8 @@ distance_between_neighbors_squared(fred, natalie) # 17
     17
 
 
+
+Now let's move onto the next step and write a function called `distance`, that given two neighbors returns the distance between them.  
 
 > You may have to Google some math to do this.
 
