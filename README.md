@@ -13,7 +13,7 @@ Let's declare a variable `neighbors` and assign it to a list of dictionaries, ea
 
 
 ```python
-neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'avenue': 1, 'street': 11},
+neighbors = [{'name': 'Fred', 'avenue': 4, 'street': 8}, {'name': 'Suzie', 'avenue': 1, 'street': 11}, 
              {'name': 'Bob', 'avenue': 5, 'street': 8}, {'name': 'Edgar', 'avenue': 6, 'street': 13},
              {'name': 'Steven', 'avenue': 3, 'street': 6}, {'name': 'Natalie', 'avenue': 5, 'street': 4}]
 ```
@@ -38,7 +38,7 @@ We'll also plot our neighbors, to get a sense of our data.
 import plotly
 
 plotly.offline.init_notebook_mode(connected=True)
-trace0 = dict(x=list(map(lambda neighbor: neighbor['avenue'],neighbors)),
+trace0 = dict(x=list(map(lambda neighbor: neighbor['avenue'],neighbors)), 
               y=list(map(lambda neighbor: neighbor['street'],neighbors)),
               text=list(map(lambda neighbor: neighbor['name'],neighbors)),
               mode='markers')
@@ -50,14 +50,14 @@ plotly.offline.iplot(dict(data=[trace0], layout={'xaxis': {'dtick': 1}, 'yaxis':
 
 
 
-<div id="c2ae1a93-1edf-402b-80cc-67157c7f1697" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("c2ae1a93-1edf-402b-80cc-67157c7f1697", [{"x": [4, 1, 5, 6, 3, 5], "y": [8, 11, 8, 13, 6, 4], "text": ["Fred", "Suzie", "Bob", "Edgar", "Steven", "Natalie"], "mode": "markers"}], {"xaxis": {"dtick": 1}, "yaxis": {"dtick": 1}}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
+<div id="4347b30f-6596-468a-9ff9-13153a204476" style="height: 525px; width: 100%;" class="plotly-graph-div"></div><script type="text/javascript">require(["plotly"], function(Plotly) { window.PLOTLYENV=window.PLOTLYENV || {};window.PLOTLYENV.BASE_URL="https://plot.ly";Plotly.newPlot("4347b30f-6596-468a-9ff9-13153a204476", [{"mode": "markers", "text": ["Fred", "Suzie", "Bob", "Edgar", "Steven", "Natalie"], "x": [4, 1, 5, 6, 3, 5], "y": [8, 11, 8, 13, 6, 4], "type": "scatter", "uid": "2855ec06-c5ca-11e9-a3f5-3af9d3ad3e0b"}], {"xaxis": {"dtick": 1}, "yaxis": {"dtick": 1}}, {"showLink": true, "linkText": "Export to plot.ly"})});</script>
 
 
 We'll start by focusing on the neighbors Fred and Natalie, and points (4, 8) and (5, 4) respectively.
 
 ### Calculating the sides of the triangle
 
-Remember that to calculate the distance, we draw a diagonal line between the two points, form a right triangle around the diagonal line, and then use the Pythagorean Theorem to calculate the hypotenuse of the triangle, that is the distance.  Let's start with imagining we formed a right triangle around the two points and now can move onto calculating the legs of our right triangle.
+Remember that to calculate the distance, we draw a diagonal line between the two points, form a right triangle around the diagonal line, and then use the Pythagorean Theorem to calculate the hypotenuse of the triangle, that is the distance.  Let's start with imagining we formed a right triangle around the two points and now can move onto calculating the legs of our right triangle. 
 
 Write a function called `street_distance` that calculates how far **in streets** two neighbors are from each other.  So for example, with Natalie at street 4, and Fred at street 8, our `street_distance` function should return the number 4.
 
